@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="당신을 위한 복지, 여행 ALL THAT TOUR">
+    <meta property="og:image" content="http://allthattour.kr/img/bg.jpg">
+    <meta property="og:title" content="ALL THAT TOUR" />
+    <meta property="og:description" content="당신을 위한 복지, 여행 ALL THAT TOUR " />
+    <meta property="og:url" content="http://allthattour.kr" />
+    <meta property="og:image" content="http://allthattour.kr/img/bg.jpg">
+    <meta property="og:title" content="ALL THAT TOUR" />
+    <meta property="og:description" content="당신을 위한 복지, 여행 ALL THAT TOUR " />
+    <meta property="og:url" content="http://allthattour.kr" />
+    <title>ALL THAT TOUR</title>
+
+    <!-- Favicons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="manifest" href="/img/site.webmanifest">
+    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- GOOGLE WEB FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="css/bootstrap-rtl.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/vendors.css" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <script src="https://js.tosspayments.com/v1/payment"></script>
+
+</head>
+
+<body>
+
+    <div id="page" class="theia-exception">
+
+        <header class="header menu_fixed">
+            <div id="preloader">
+                <div data-loader="circle-side"></div>
+            </div><!-- /Preload -->
+            <div id="logo">
+                <a href="/">
+                    <img src="img/logo.svg?v=1" width="150" height="36" alt="" class="logo_normal">
+                    <img src="img/logo_sticky.svg?v=1" width="150" height="36" alt="" class="logo_sticky">
+                </a>
+                <img src="img/hotel.svg" alt="">
+            </div>
+
+            <a href="#menu" class="btn_mobile">
+                <div class="hamburger hamburger--spin" id="hamburger">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+            </a>
+            <nav id="menu" class="main-menu">
+                <ul th:if="${name == ''}">
+                    <li><span><a href="/">홈</a></span></li>
+                    <li><span><a href="/help">고객센터</a></span></li>
+                    <li><span><a href="/cart">장바구니</a></span></li>
+                    <li><span><button class="btn btn-primary" onclick="location.href='/signup';">회원가입</a></span>
+                    </li>
+                    <li><span><button class="btn btn-primary" onclick="location.href='/login';">로그인</a></span>
+                    </li>
+                </ul>
+                <ul th:if="${name != ''}">
+                    <li><span><a href="/">홈</a></span></li>
+                    <li><span><a href="/help">고객센터</a></span></li>
+                    <li><span><a href="/cart">장바구니</a></span></li>
+                    <li><span><a href="/mypage" th:text="${name}"></a></span></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- /header -->
+
+        <main>
+            <div class="hero_in cart_section">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="bs-wizard clearfix">
+                            <div class="bs-wizard-step active">
+                                <div class="text-center bs-wizard-stepnum">Your cart</div>
+                                <div class="progress">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <a href="#0" class="bs-wizard-dot"></a>
+                            </div>
+
+                            <div class="bs-wizard-step disabled">
+                                <div class="text-center bs-wizard-stepnum">Payment</div>
+                                <div class="progress">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <a href="#0" class="bs-wizard-dot"></a>
+                            </div>
+
+                            <div class="bs-wizard-step disabled">
+                                <div class="text-center bs-wizard-stepnum">Finish!</div>
+                                <div class="progress">
+                                    <div class="progress-bar"></div>
+                                </div>
+                                <a href="#0" class="bs-wizard-dot"></a>
+                            </div>
+                        </div>
+                        <!-- End bs-wizard -->
+                    </div>
+                </div>
+            </div>
+            <!--/hero_in-->
+
+            <div class="bg_color_1">
+                <div class="container margin_60_35">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="box_cart">
+                                <table class="table cart-list">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                숙소
+                                            </th>
+                                            <th>
+                                                기간
+                                            </th>
+                                            <th>
+                                                인원
+                                            </th>
+                                            <th>
+                                                가격
+                                            </th>
+                                            <th>
+                                                삭제
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="cart, iterator : ${carts}">
+                                            <td th:data-searchid="${cart.getSearchId()}">
+                                                <span class="item_cart" th:text="${cart.getHotelName()}"></span>
+                                            </td>
+                                            <td th:text="${cart.getStart()} + ' ~ ' + ${cart.getEnd()}">
+                                                23.05.20 ~ 23.06.28
+                                            </td>
+                                            <td
+                                                th:text="'성인 ' + ${cart.getAdult()} + '명, 아동: ' + ${cart.getChild()} + '명'">
+                                                성인 1명, 아동 1명
+                                            </td>
+                                            <td>
+                                                <strong th:text="'₩' + ${cart.getPrice()}">₩168,000</strong>
+                                            </td>
+                                            <td class="options" style="width:5%; text-align:center;">
+                                                <a th:href="'javascript:deleteCart(' + ${cart.getPid()} +')'"
+                                                    th:data-id="${cart.getPid()}"><i class="icon-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /cart-options -->
+                            </div>
+                        </div>
+                        <!-- /col -->
+
+                        <aside class="col-lg-4" id="sidebar">
+                            <div class="box_detail">
+                                <div id="total_cart">
+                                    결제 금액 <span class="float-end" th:text="'₩'+${total}"></span>
+                                </div>
+                                <ul class="cart_details">
+                                    <li>합계 <span th:text="'₩'+${total}"></span></li>
+                                    <li>지불할 총 금액 <span id="pay_price" th:data-price="${total}"
+                                            th:text="'₩'+${total}"></span></li>
+                                    <!-- <li>체크인 시 결제할 총액 <span>₩200,000</span></li> -->
+                                </ul>
+                                <a href="javascript:check()" class="btn_1 full-width purchase">결제하기</a>
+                                <div class="text-center"><small>No money charged in this step</small></div>
+                            </div>
+                        </aside>
+                    </div>
+                    <!-- /row -->
+                </div>
+                <!-- /container -->
+            </div>
+            <!-- /bg_color_1 -->
+        </main>
+        <!--/main-->
+
+        <footer>
+            <div class="container margin_60_35">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 pe-5">
+                        <p><img src="img/logo.svg?v=1" width="150" height="36" alt=""></p>
+                        <p>종합여행업 : 제 2022-000004호<br>
+                            통신판매업 : 제 2022-서울동대문-0873호<br>
+                            종합 여행업 보증보험 : 100-000-202300865898<br><br>
+                            서울특별시 동대문구 장한로 119 (주) 올댓메디<br>
+                            대표자 : 지윤정
+                        </p>
+                        <div class="follow_us">
+                            <ul>
+                                <li>Follow us</li>
+                                <li><a href="https://www.instagram.com/all_that_tour/"><i class="ti-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 pe-5">
+                        <h5>Contact with Us</h5>
+                        <ul class="contacts">
+                            <li>고객센터 <a href="tel://0264969214"> 02-6406-0214</a> 9:00~ 18:00</li>
+                            <li><a href="mailto:tour@allthatmedi.kr"> tour@allthatmedi.kr</a></li>
+                        </ul>
+                        <div>
+                            업무외시간 긴급연락처: +82-6022-2442<br>
+                            <ul style="margin-top: 0;">
+                                <li style="list-style: disc; list-style-position: inside;">
+                                    문의 시에는 "아고다 예약번호"를 함께 제공해주시면 감사하겠습니다.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--/row-->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-6">
+                        <ul id="additional_links">
+                            <li><a
+                                    href="https://northern-actress-1b8.notion.site/14b4c5f047a947b19a5f00ba2723dd2e">개인정보처리방침</a>
+                            </li>
+                            <li><a
+                                    href="https://northern-actress-1b8.notion.site/7faa64191d7c4abb971b169d956ae4fa">이용약관</a>
+                            </li>
+                            <li><span>© ALL THAT TOUR</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--/footer-->
+    </div>
+    <!-- page -->
+
+    <div id="toTop"></div><!-- Back to top button -->
+
+    <!-- COMMON SCRIPTS -->
+    <script src="js/common_scripts.js"></script>
+    <script src="js/main_rtl.js"></script>
+    <script src="phpmailer/validate.js"></script>
+
+    <script>
+        function toss(type) {
+            var clientKey = 'test_ck_LBa5PzR0ArnLgqPEkR13vmYnNeDM';
+            var today = new Date();
+            today.setHours(today.getHours() + 9);
+            var oid = today.toISOString().replace('T', ' ').substring(0, 19).replaceAll('-', '').replaceAll(':', '').replaceAll(' ', '');
+            var price = parseInt($('#pay_price').data('price'));
+            var name = '아고다 예약';
+            var tossPayments = TossPayments(clientKey)
+            tossPayments.requestPayment('카드', {
+                amount: price,
+                orderId: oid,
+                orderName: name,
+                customerName: '',
+                successUrl: 'http://211.203.51.244:8080/success',
+                failUrl: 'http://211.203.51.244:8080/fail',
+                // successUrl: 'http://13.209.228.63:8080/success',
+                // failUrl: 'http://13.209.228.63:8080/fail',
+            }).catch(function (error) {
+                if (error.code === 'USER_CANCEL') {
+                } else if (error.code === 'INVALID_CARD_COMPANY') {
+                }
+            })
+        }
+
+        function check() {
+            $.ajax({
+                url: "/api/service/check-cart", type: 'GET', data: {},
+                complete: function (e, xhr, settings) {
+                    if (e.status == 200) {
+                        toss('card');
+                    } else {
+                        alert('예약 불가능한 상품이 있습니다.');
+                        location.reload();
+                    }
+                }
+            })
+        }
+
+        function deleteCart(id) {
+            $.ajax({
+                url: "/api/service/delete-cart/" + id, type: 'GET', data: {},
+                contentType: "application/json;charset=UTF-8",
+                complete: function (e, xhr, settings) {
+                    if (e.status == 200) {
+                        location.reload();
+                    } else {
+
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

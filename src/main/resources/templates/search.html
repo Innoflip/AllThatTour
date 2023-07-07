@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="당신을 위한 복지, 여행 ALL THAT TOUR">
+	<meta name="image" property="og:image" content="http://allthattour.kr/img/bg.jpg">
+	<meta name="title" property="og:title" content="ALL THAT TOUR" />
+	<meta name="description" property="og:description" content="당신을 위한 복지, 여행 ALL THAT TOUR " />
+	<meta name="url" property="og:url" content="http://allthattour.kr" />
+	<title>ALL THAT TOUR</title>
+
+	<!-- Favicons-->
+	<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+
+	<!-- GOOGLE WEB FONT -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+
+	<!-- BASE CSS -->
+	<link href="/css/bootstrap-rtl.min.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/vendors.css" rel="stylesheet">
+
+	<!-- YOUR CUSTOM CSS -->
+	<link href="/css/custom.css" rel="stylesheet">
+
+</head>
+
+<body class="rtl">
+
+	<div id="page" class="theia-exception">
+
+		<header class="header menu_fixed">
+			<div id="preloader">
+				<div data-loader="circle-side"></div>
+			</div><!-- /Page Preload -->
+			<div id="logo">
+				<a href="/">
+					<img src="img/logo.svg" width="150" height="28" alt="" class="logo_normal">
+					<img src="img/logo_sticky.svg" width="150" height="28" alt="" class="logo_sticky">
+				</a>
+
+			</div>
+
+			<a href="#menu" class="btn_mobile">
+				<div class="hamburger hamburger--spin" id="hamburger">
+					<div class="hamburger-box">
+						<div class="hamburger-inner"></div>
+					</div>
+				</div>
+			</a>
+			<nav id="menu" class="main-menu">
+				<ul th:if="${name == ''}">
+					<li><span><a href="/">홈</a></span></li>
+					<li><span><a href="/help">고객센터</a></span></li>
+					<li><span><a href="/cart">장바구니</a></span></li>
+					<li><span><button class="btn btn-primary" onclick="location.href='/signup';">회원가입</a></span>
+					</li>
+					<li><span><button class="btn btn-primary" onclick="location.href='/login';">로그인</a></span>
+					</li>
+				</ul>
+				<ul th:if="${name != ''}">
+					<li><span><a href="/">홈</a></span></li>
+					<li><span><a href="/help">고객센터</a></span></li>
+					<li><span><a href="/cart">장바구니</a></span></li>
+					<li><span><a href="/mypage" th:text="${name}"></a></span></li>
+				</ul>
+			</nav>
+		</header>
+		<!-- /header -->
+
+		<main>
+
+			<section class="hero_in hotels">
+				<div class="wrapper">
+					<div class="container">
+						<h1 class="fadeInUp"><span></span>고객님을 위한 <BR>ALL THAT TOUR 추천</h1>
+					</div>
+				</div>
+			</section>
+			<!--/hero_in-->
+
+			<div class="container margin_60_35">
+				<div class="col-lg-12">
+					<div class="row g-0 custom-search-input-2 inner">
+						<div class="col-lg-4">
+							<div class="form-group">
+								<input class="form-control" type="text" placeholder="어디로 떠나시나요?" id="place"
+									th:value="${place}">
+								<i class="icon_pin_alt"></i>
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<input type="hidden" id="start_date" th:value="${startDate}">
+							<input type="hidden" id="end_date" th:value="${endDate}">
+							<input type="hidden" id="room" th:value="${room}">
+							<div class="form-group">
+								<input class="form-control" type="text" name="dates" placeholder="언제 떠나시나요?"
+									th:value="${startDate} + ' ~ ' + ${endDate}">
+								<i class="icon_calendar"></i>
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="panel-dropdown">
+								<a id="guests" href="#">누구와 떠나나요? <span class="qtyTotal"
+										style="display: none;">1</span></a>
+								<div class="panel-dropdown-content">
+									<!-- Quantity Buttons -->
+									<div class="qtyButtons">
+										<label>성인</label>
+										<input type="text" name="qtyInput" id="adult" th:value="${adult}">
+									</div>
+									<div class="qtyButtons">
+										<label>아동</label>
+										<input type="text" name="qtyInput" id="child" th:value="${child}">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2">
+							<input type="submit" id="search-btn" class="btn_search" value="검색">
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<div class="row">
+					<aside class="col-lg-3" id="sidebar">
+						<input type="hidden" id="minprice" th:value="${minPrice}">
+						<input type="hidden" id="maxPrice" th:value="${maxPrice}">
+						<div id="filters_col">
+							<a data-bs-toggle="collapse" href="#collapseFilters" aria-expanded="false"
+								aria-controls="collapseFilters" id="filters_col_bt">필터 </a>
+							<div class="collapse show" id="collapseFilters">
+								<div class="filter_type">
+									<h6>가격</h6>
+									<input type="text" id="range" name="range"
+										th:value="${minPrice} + ':' + ${maxPrice}">
+								</div>
+								<div class="filter_type">
+									<h6>숙소 성급</h6>
+									<ul>
+										<li>
+											<label class="container_check"><span class="cat_star"><i
+														class="icon_star"></i><i class="icon_star"></i><i
+														class="icon_star"></i><i class="icon_star"></i><i
+														class="icon_star"></i></span>
+												<input data-type="rate" type="checkbox" id="rate5" value="5" checked
+													th:if="${rates.contains('5')}">
+												<input data-type="rate" type="checkbox" id="rate5" value="5"
+													th:else="${rates.contains('5')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check"><span class="cat_star"><i
+														class="icon_star"></i><i class="icon_star"></i><i
+														class="icon_star"></i><i class="icon_star"></i></span>
+												<input data-type="rate" type="checkbox" id="rate4" value="4" checked
+													th:if="${rates.contains('4')}">
+												<input data-type="rate" type="checkbox" id="rate4" value="4"
+													th:else="${rates.contains('4')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check"><span class="cat_star"><i
+														class="icon_star"></i><i class="icon_star"></i><i
+														class="icon_star"></i></span>
+												<input data-type="rate" type="checkbox" id="rate3" value="3" checked
+													th:if="${rates.contains('3')}">
+												<input data-type="rate" type="checkbox" id="rate3" value="3"
+													th:else="${rates.contains('3')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check"><span class="cat_star"><i
+														class="icon_star"></i><i class="icon_star"></i></span>
+												<input data-type="rate" type="checkbox" id="rate2" value="2" checked
+													th:if="${rates.contains('2')}">
+												<input data-type="rate" type="checkbox" id="rate2" value="2"
+													th:else="${rates.contains('2')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check"><span class="cat_star"><i
+														class="icon_star"></i></span>
+												<input data-type="rate" type="checkbox" id="rate1" value="1" checked
+													th:if="${rates.contains('1')}">
+												<input data-type="rate" type="checkbox" id="rate1" value="1"
+													th:else="${rates.contains('1')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="filter_type">
+									<h6>숙소 종류</h6>
+									<ul>
+										<li>
+											<label class="container_check">호텔
+												<input data-type="type" type="checkbox" id="type1" value="1" checked
+													th:if="${types.contains('1')}">
+												<input data-type="type" type="checkbox" id="type1" value="1"
+													th:else="${types.contains('1')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">리조트
+												<input data-type="type" type="checkbox" id="type2" value="2" checked
+													th:if="${types.contains('2')}">
+												<input data-type="type" type="checkbox" id="type2" value="2"
+													th:else="${types.contains('2')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">게스트 하우스
+												<input data-type="type" type="checkbox" id="type3" value="3" checked
+													th:if="${types.contains('3')}">
+												<input data-type="type" type="checkbox" id="type3" value="3"
+													th:else="${types.contains('3')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">모텔
+												<input data-type="type" type="checkbox" id="type4" value="4" checked
+													th:if="${types.contains('4')}">
+												<input data-type="type" type="checkbox" id="type4" value="4"
+													th:else="${types.contains('4')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">아파트
+												<input data-type="type" type="checkbox" id="type5" value="5" checked
+													th:if="${types.contains('5')}">
+												<input data-type="type" type="checkbox" id="type5" value="5"
+													th:else="${types.contains('5')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="filter_type">
+									<h6>침대 종류</h6>
+									<ul>
+										<li>
+											<label class="container_check">싱글/트윈 베드
+												<input data-type="room" type="checkbox" id="room1" value="1" checked
+													th:if="${rooms.contains('1')}">
+												<input data-type="room" type="checkbox" id="room1" value="1"
+													th:else="${rooms.contains('1')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">더블 베드
+												<input data-type="room" type="checkbox" id="room2" value="2" checked
+													th:if="${rooms.contains('2')}">
+												<input data-type="room" type="checkbox" id="room2" value="2"
+													th:else="${rooms.contains('2')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">퀸베드
+												<input data-type="room" type="checkbox" id="room3" value="3" checked
+													th:if="${rooms.contains('3')}">
+												<input data-type="room" type="checkbox" id="room3" value="3"
+													th:else="${rooms.contains('3')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">킹 베드
+												<input data-type="room" type="checkbox" id="room4" value="4" checked
+													th:if="${rooms.contains('4')}">
+												<input data-type="room" type="checkbox" id="room4" value="4"
+													th:else="${rooms.contains('4')}">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="filter_type">
+									<h6>편의 시설</h6>
+									<ul>
+										<li>
+											<label class="container_check">난방
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">tv
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">냉장고
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">세탁기
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">욕조
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">인터넷
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">에어컨
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">발코니/테라스
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">반려동물 동반
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">수영장
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+									</ul>
+								</div>
+								<div class="filter_type">
+									<h6>이용가능 서비스</h6>
+									<ul>
+										<li>
+											<label class="container_check">조식 포함
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">레이트 체크 아웃
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+										<li>
+											<label class="container_check">얼리 체크인
+												<input type="checkbox">
+												<span class="checkmark"></span>
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!--/collapse -->
+						</div>
+						<!--/filters col-->
+					</aside>
+					<!-- /aside -->
+
+					<div class="col-lg-9" id="list_sidebar">
+						<div class="isotope-wrapper" th:each="hotel, iterator : ${hotels}" style="margin-right: 30px;">
+							<!-- /box_list -->
+							<div class="box_list isotope-item latest" style="width: 100%;">
+								<div class="row g-0">
+									<div class="col-lg-5">
+										<figure>
+											<a
+												th:href="'hotel-detail/' + ${hotel.getHotelId()} + '?s=' + ${startDate} + '&e=' + ${endDate} + '&a=' + ${adult} + '&c='+${child}"><img
+													th:src="${hotel.getPhotoUrl()}" class="img-fluid" alt="" width="800"
+													height="533">
+											</a>
+										</figure>
+									</div>
+									<div class="col-lg-7 search-card">
+										<div class="wrapper">
+											<div class="row">
+												<div class="col-8"><a
+														th:href="'hotel-detail/' + ${hotel.getHotelId()} + '?s=' + ${startDate} + '&e=' + ${endDate} + '&a=' + ${adult} + '&c='+${child}"
+														th:text="${hotel.getName()}" class="search-title"></a></div>
+												<div class="col-4"><span class="search-price1">starting from</span><br>
+													<div th:text="${hotel.getPriceStr()}" class="search-price2"></div>
+													<div class="search-price3">excl. tax</div>
+												</div>
+											</div>
+											<div class="row mt-2">
+												<img src="img/location.svg"> <span class="search-address"
+													th:text="${hotel.getAddress()}"></span>
+											</div>
+											<div class="row mt-2">
+												<img src="/img/star.png"
+													th:each="i: ${#numbers.sequence(0, hotel.getStar() - 1)}">
+												<div class="search-rating" th:text="${hotel.getStar()} + ' Star Hotel'">
+												</div>
+												<img src="img/cafe.png">
+												<div class="search-aminity-count"
+													th:text="${hotel.getAminityCount()} + '+ Aminities'"></div>
+											</div>
+											<div class="row mt-2">
+												<div class="search-rating2" th:text="${hotel.getRate()}"></div>
+												<div class="search-review-count"
+													th:text="'리뷰 ' + ${hotel.getReviewCount()}"></div>
+											</div>
+										</div>
+										<ul style="padding: 10px 15px 12px 20px;">
+											<li style="width: 50px; margin-right: 0px;">
+												<div><a th:href="'hotel-detail/' + ${hotel.getHotelId()} + '?s=' + ${startDate} + '&e=' + ${endDate} + '&a=' + ${adult} + '&c='+${child}"
+														th:data-id="${hotel.getHotelId()}" class="search-cart"><img
+															style="height: 24px; width: 24px;" src="img/cart.png"></a>
+												</div>
+											</li>
+											<li class="search-reserve"><a
+													th:href="'hotel-detail/' + ${hotel.getHotelId()} + '?s=' + ${startDate} + '&e=' + ${endDate} + '&a=' + ${adult} + '&c='+${child}"><button
+														class="btn btn-primary"
+														th:data-id="${hotel.getHotelId()}">예약하기</button></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- /box_list -->
+						</div>
+						<!-- /isotope-wrapper -->
+					</div>
+					<!-- /col -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</main>
+		<!--/main-->
+
+		<footer>
+			<div class="container margin_60_35">
+				<div class="row">
+					<div class="col-lg-6 col-md-12 pe-5">
+						<p><img src="img/logo.svg?v=1" width="150" height="36" alt=""></p>
+						<p>종합여행업 : 제 2022-000004호<br>
+							통신판매업 : 제 2022-서울동대문-0873호<br>
+							종합 여행업 보증보험 : 100-000-202300865898<br><br>
+							서울특별시 동대문구 장한로 119 (주) 올댓메디<br>
+							대표자 : 지윤정
+						</p>
+						<div class="follow_us">
+							<ul>
+								<li>Follow us</li>
+								<li><a href="https://www.instagram.com/all_that_tour/"><i class="ti-instagram"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-12 pe-5">
+						<h5>Contact with Us</h5>
+						<ul class="contacts">
+							<li>고객센터 <a href="tel://0264969214"> 02-6406-0214</a> 9:00~ 18:00</li>
+							<li><a href="mailto:tour@allthatmedi.kr"> tour@allthatmedi.kr</a></li>
+						</ul>
+						<div>
+							업무외시간 긴급연락처: +82-6022-2442<br>
+							<ul style="margin-top: 0;">
+								<li style="list-style: disc; list-style-position: inside;">
+									문의 시에는 "아고다 예약번호"를 함께 제공해주시면 감사하겠습니다.
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--/row-->
+				<hr>
+				<div class="row">
+					<div class="col-lg-6">
+					</div>
+					<div class="col-lg-6">
+						<ul id="additional_links">
+							<li><a
+									href="https://northern-actress-1b8.notion.site/14b4c5f047a947b19a5f00ba2723dd2e">개인정보처리방침</a>
+							</li>
+							<li><a
+									href="https://northern-actress-1b8.notion.site/7faa64191d7c4abb971b169d956ae4fa">이용약관</a>
+							</li>
+							<li><span>© ALL THAT TOUR</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!--/footer-->
+	</div>
+	<!-- page -->
+
+	<div id="toTop"></div><!-- Back to top button -->
+
+	<!-- COMMON SCRIPTS -->
+	<script src="/js/common_scripts.js"></script>
+	<script src="/js/main_rtl.js"></script>
+	<script src="phpmailer/validate.js"></script>
+
+	<!-- Map -->
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script src="/js/markerclusterer.js"></script>
+	<script src="/js/map_hotels.js"></script>
+	<script src="/js/infobox.js"></script>
+
+	<!-- INPUT QUANTITY  -->
+	<script src="/js/input_qty.js"></script>
+
+	<!-- DATEPICKER  -->
+	<script>
+		$(function () {
+			'use strict';
+			$('input[name="dates"]').daterangepicker({
+				autoUpdateInput: false,
+				minDate: new Date(),
+				locale: {
+					cancelLabel: '초기화',
+					applyLabel: '적용'
+				}
+			}, function (start, end, label) {
+				$('#start_date').val(start);
+				$('#end_date').val(end);
+			});
+			$('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
+				$('#start_date').val(picker.startDate.format('YYYY-MM-DD'));
+				$('#end_date').val(picker.endDate.format('YYYY-MM-DD'));
+			});
+			$('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
+				$(this).val(picker.startDate.format('YYYY-MM-DD') + ' ~ ' + picker.endDate.format('YYYY-MM-DD'));
+			});
+			$('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
+				$(this).val('');
+				$('#start_date').val('');
+				$('#end_date').val('');
+			});
+			$('input[data-type="rate"],input[data-type="type"],input[data-type="room"]').on('change', function () {
+				$('#search-btn').click();
+			});
+		});
+	</script>
+
+	<!-- Masonry Filtering -->
+	<script src="/js/isotope.min.js"></script>
+	<script>
+		$(window).on('load', function () {
+			var $container = $('.isotope-wrapper');
+			$container.isotope({itemSelector: '.isotope-item', layoutMode: 'masonry'});
+		});
+
+		$('.filters_listing').on('click', 'input', 'change', function () {
+			var selector = $(this).attr('data-filter');
+			$('.isotope-wrapper').isotope({filter: selector});
+		});
+	</script>
+	<script>
+		$(function () {
+			if ($('#adult').val() > 0 && $('#child').val() > 0) {
+				$('#guests').text('성인 ' + $('#adult').val() + '명, 아동 ' + $('#child').val() + '명');
+			} else if ($('#adult').val() > 0) {
+				$('#guests').text('성인 ' + $('#adult').val() + '명');
+			} else if ($('#child').val() > 0) {
+				$('#guests').text('아동 ' + $('#child').val() + '명');
+			}
+			$(document).on('click', '.btn-login', function () {
+				location.href = 'login';
+			}).on('click', '#search-btn', function (e) {
+				e.preventDefault();
+				var rates = [];
+				for (var i = 0; i < $('[data-type="rate"]:checked').length; i++) {
+					rates.push($($('[data-type="rate"]:checked')[i]).val());
+				}
+				var types = [];
+				for (var i = 0; i < $('[data-type="type"]:checked').length; i++) {
+					types.push($($('[data-type="type"]:checked')[i]).val());
+				}
+				var rooms = [];
+				for (var i = 0; i < $('[data-type="room"]:checked').length; i++) {
+					rooms.push($($('[data-type="room"]:checked')[i]).val());
+				}
+				var prices = $('#range').val().split(';');
+				var minPrice = prices[0];
+				var maxPrice = prices[1];
+				e.preventDefault();
+				if ($('#place').val() == '') {
+					alert('장소를 입력하세요')
+				} else if ($('#start_date').val() == '') {
+					alert('체크인 날짜와 체크아웃 날짜를 선택하세요')
+				} else if ($('#a').val() == '0') {
+					alert('최소 한 명의 성인이 있어야 합니다.')
+				} else {
+					location.href = "search?k=" + $('#place').val() + '&s=' + $('#start_date').val() + '&e=' + $('#end_date').val() + '&r=' + $('#room').val() + '&a=' + $('#adult').val() + '&c=' + $('#child').val() + '&z=' + rates.join(',') + '&y=' + types.join(',') + '&x=' + rooms.join(',') + '&u=' + minPrice + '&v=' + maxPrice;
+				}
+			})
+		})
+	</script>
+	</script>
+
+	<!-- Range Slider -->
+	<script>
+		var range = $("#range").ionRangeSlider({
+			hide_min_max: false,
+			keyboard: true,
+			min: 10000,
+			max: 2500000,
+			from: 10,
+			to: 2500000,
+			type: 'double',
+			step: 100,
+			prefix: "",
+			grid: false,
+			color: '#B015FD',
+			skin: "big"
+		}).data('ionRangeSlider');
+		range.update({
+			from: $('#minPrice').val(),
+			to: $('#maxPrice').val()
+		});
+		range.onchange(function () {
+			$('#search-btn').click();
+		})
+	</script>
+
+
+</body>
+
+</html>

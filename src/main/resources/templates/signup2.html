@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description"
+		content="Panagea - Premium site template for travel agencies, hotels and restaurant listing.">
+	<meta name="author" content="Ansonika">
+	<title>ALL THAT TOUR | Login</title>
+
+	<!-- GOOGLE WEB FONT -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
+	<!-- BASE CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/style.css" rel="stylesheet">
+	<link href="/css/vendors.css" rel="stylesheet">
+
+	<!-- YOUR CUSTOM CSS -->
+	<link href="/css/custom.css" rel="stylesheet">
+
+	<link href="/js/modernizr_slider.js" rel="stylesheet">
+
+</head>
+
+<body class="signup-body">
+
+	<div class="login-box">
+		<form id="frm">
+			<div class="login-top-box">
+				<div class="signup-title">회원가입</div>
+				<div class="form-group" style="margin-top: 74px;" align="left">
+					<label>영문 이름 (First Name)</label>
+					<input type="text" class="form-control custom-input" placeholder="영문이름" name="firstName"
+						id="firstName">
+				</div>
+				<div class="form-group" style="margin-top: 17px;" align="left">
+					<label>영문 이름 (Last Name)</label>
+					<input type="text" class="form-control custom-input" placeholder="영문이름" name="lastName"
+						id="lastName">
+				</div>
+				<div class="form-group" style="margin-top: 17px;">
+					<label>이메일</label>
+					<input type="email" class="form-control custom-input" placeholder="이메일" name="email" id="email">
+				</div>
+				<div class="form-group">
+					<label>전화번호</label>
+					<input class="form-control" type="phone" id="phone">
+					<i class="icon_phone_alt"></i>
+				</div>
+				<div class="form-group" style="margin-top: 17px;">
+					<label>비밀번호</label>
+					<input type="password" class="form-control custom-input" placeholder="비밀번호" name="passwd"
+						id="passwd">
+				</div>
+				<div class="form-group" style="margin-top: 17px;">
+					<label>비밀번호 확인</label>
+					<input type="password" class="form-control custom-input" placeholder="비밀번호 확인" id="passwdRe">
+				</div>
+			</div>
+			<div class="login-mid-box" style="margin-top: 172px; width: 613px;" align="left">
+				<div class="signup-privacy-title" style="width: 500px;" align="left">개인정보 처리방침</div>
+				<div class="login-divider" style="margin-top: 27px; width: 500px;"></div>
+				<div class="signup-privacy-subtitle">본 예약의 처리를 위해 모든 개인정보 처리방침에 동의해 주시기 바랍니다.</div>
+				<div class="row" style="flex-wrap: nowrap; margin-top: 64px;">
+					<img class="checkbox" src="img/check_off.png" id="check_all" data-status="off">
+					<div class="signup-privacy-main">다음의 모든 항목에 동의합니다.</div>
+				</div>
+				<div style="margin-left: 20px;">
+					<div class="row" style="flex-wrap: nowrap; margin-top: 26px;">
+						<img class="checkbox" src="img/check_off.png" id="check_use" data-status="off">
+						<div class="signup-privacy-main">본인은 본 서비스 약관에 동의하며 18세 이상임을 확인합니다. [필수] (링크)</div>
+					</div>
+					<div class="row" style="flex-wrap: nowrap; margin-top: 26px;">
+						<img class="checkbox" src="img/check_off.png" id="check_privacy" data-status="off">
+						<div class="signup-privacy-main">본인은 개인정보 처리방침에 따라 본인의 개인정보를 사용하고 수집하는 것에 동의합니다. {필수} (링크)</div>
+					</div>
+					<div class="row" style="flex-wrap: nowrap; margin-top: 26px;">
+						<img class="checkbox" src="img/check_off.png" id="check_privacy2" data-status="off">
+						<div class="signup-privacy-main">본인은 개인정보 처리방침에 따라 대한민국 또는 해외에 있는 제 3자에 본인의 개인정보를 제공하는 것에
+							동의합니다.
+							[필수] (링크)</div>
+					</div>
+				</div>
+				<div style="margin-top: 80px;"><button type="submit" class="signup-btn btn" id="btn-signup"
+						disabled>회원가입</button></div>
+			</div>
+		</form>
+	</div>
+	<!-- /container -->
+
+	<div id="toTop"></div><!-- Back to top button -->
+
+	<!-- COMMON SCRIPTS -->
+	<script src="js/common_scripts.js"></script>
+	<script src="js/main.js"></script>
+	<script src="phpmailer/validate.js"></script>
+	<script src="js/input_qty.js"></script>
+	<!-- FlexSlider -->
+	<script defer src="js/jquery.flexslider.js"></script>
+	<script>
+		$(window).on('load', function () {
+			'use strict';
+			$('#carousel_slider').flexslider({
+				animation: "slide",
+				controlNav: false,
+				animationLoop: false,
+				slideshow: false,
+				itemWidth: 280,
+				itemMargin: 25,
+				asNavFor: '#slider'
+			});
+			$('#slider').flexslider({
+				animation: "fade",
+				controlNav: false,
+				animationLoop: false,
+				slideshow: false,
+				sync: "#carousel_slider",
+				start: function (slider) {
+					$('body').removeClass('loading');
+				}
+			});
+		});
+	</script>
+	<script>
+		$(function () {
+			'use strict';
+			$('#start_date,#end_date').daterangepicker({
+				autoUpdateInput: false,
+				minDate: new Date(),
+				locale: {
+					cancelLabel: '초기화',
+					applyLabel: '적용'
+				},
+			}, function (start, end, label) {
+				$('#start_date').val(start);
+				$('#end_date').val(end);
+			});
+			$('#start_date,#end_date').on('apply.daterangepicker', function (ev, picker) {
+				$('#start_date').val(picker.startDate.format('YYYY-MM-DD'));
+				$('#end_date').val(picker.endDate.format('YYYY-MM-DD'));
+			});
+			$('#start_date,#end_date').on('cancel.daterangepicker', function (ev, picker) {
+				$('#start_date').val(picker.startDate.format('YYYY-MM-DD'));
+				$('#end_date').val(picker.endDate.format('YYYY-MM-DD'));
+			});
+		});
+	</script>
+	<script>
+		$(function () {
+			$(document).on('click', '#check_all', function () {
+				if ($(this).data('status') == 'off') {
+					$('#check_all,#check_use,#check_privacy,#check_privacy2').data('status', 'on');
+					$('#check_all,#check_use,#check_privacy,#check_privacy2').attr('src', 'img/check_on.png');
+				} else {
+					$('#check_all,#check_use,#check_privacy,#check_privacy2').data('status', 'off');
+					$('#check_all,#check_use,#check_privacy,#check_privacy2').attr('src', 'img/check_off.png');
+				}
+				setCheck()
+			}).on('click', '#check_use', function () {
+				if ($(this).data('status') == 'off') {
+					$('#check_use').data('status', 'on');
+					$('#check_use').attr('src', 'img/check_on.png');
+				} else {
+					$('#check_use').data('status', 'off');
+					$('#check_use').attr('src', 'img/check_off.png');
+				}
+				setCheck()
+			}).on('click', '#check_privacy', function () {
+				if ($(this).data('status') == 'off') {
+					$('#check_privacy').data('status', 'on');
+					$('#check_privacy').attr('src', 'img/check_on.png');
+				} else {
+					$('#check_privacy').data('status', 'off');
+					$('#check_privacy').attr('src', 'img/check_off.png');
+				}
+				setCheck()
+			}).on('click', '#check_privacy2', function () {
+				if ($(this).data('status') == 'off') {
+					$('#check_privacy2').data('status', 'on');
+					$('#check_privacy2').attr('src', 'img/check_on.png');
+				} else {
+					$('#check_privacy2').data('status', 'off');
+					$('#check_privacy2').attr('src', 'img/check_off.png');
+				}
+				setCheck()
+			}).on('submit', '#frm', function (e) {
+				e.preventDefault()
+				if ($('#firstName').val() == '') {
+					alert('영문 이름을 입력하세요')
+				} else if ($('#lastName').val() == '') {
+					alert('영문 성을 입력하세요')
+				} else if ($('#email').val() == '') {
+					alert('이메일을 입력하세요')
+				} else if ($('#phone').val() == '') {
+					alert('전화번호를 입력하세요')
+				} else if ($('#passwd').val() == '') {
+					alert('비밀번호를 입력하세요')
+				} else if ($('#passwd').val() != $('#passwdRe').val()) {
+					alert('비밀번호가 일치하지 않습니다')
+				} else {
+					var data = JSON.stringify({firstName: $('#firstName').val(), lastName: $('#lastName').val(), email: $('#email').val(), phone: $('#phone').val(), passwd: $('#passwd').val()});
+					$.ajax({
+						url: "/api/user/register.do", type: 'POST', data: data,
+						contentType: "application/json;charset=UTF-8",
+						complete: function (e, xhr, settings) {
+							if (e.status == 200) {
+								location.replace('index')
+							} else {
+								alert('이미 사용 중인 이메일입니다.');
+							}
+						}
+					});
+				}
+			})
+
+			function setCheck() {
+				if (!($('#check_use').data('status') == 'on' && $('#check_privacy').data('status') == 'on' && $('#check_privacy2').data('status') == 'on')) {
+					$('#check_all').data('status', 'off');
+					$('#check_all').attr('src', 'img/check_off.png');
+					$('#btn-signup').prop('disabled', true);
+				} else if ($('#check_use').data('status') == 'on' && $('#check_privacy').data('status') == 'on' && $('#check_privacy2').data('status') == 'on') {
+					$('#check_all').data('status', 'on');
+					$('#check_all').attr('src', 'img/check_on.png');
+					$('#btn-signup').removeAttr('disabled');
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
